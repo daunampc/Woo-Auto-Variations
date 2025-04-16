@@ -445,12 +445,14 @@ function woo_create_variations_from_existing_terms($product_id){
         }
     }
 }
-require_once plugin_dir_path(__FILE__) . 'plugin-update-checker/load-v5p5.php';
+require 'plugin-update-checker/plugin-update-checker.php';
 use YahnisElsts\PluginUpdateChecker\v5\PucFactory;
 
 $myUpdateChecker = PucFactory::buildUpdateChecker(
-        'https://biscoso.com/update/woo-auto-variations.json',
+        'https://github.com/daunampc/Woo-Auto-Variations',
         __FILE__,
         'woo-auto-variations'
 );
+$myUpdateChecker->setBranch('main');
+
 
