@@ -332,15 +332,36 @@ function woo_variations_admin_page()
         if (!empty($search)) $base_url .= '&s=' . urlencode($search);
         if ($filter_no_variations) $base_url .= '&filter_no_variations=1';
 
-        echo '<div class="tablenav"><div class="tablenav-pages">';
-        echo paginate_links([
-            'base' => $base_url,
+        echo '<div class="tablenav"><div class="tablenav-pages" style="display: flex; align-items: center; gap: 6px;">';
+
+        $total_items = $query->found_posts;
+        echo '<span>' . $total_items . ' items</span>';
+
+        $base_url = remove_query_arg('paged', $base_url); // Clear &paged to append correctly
+        $page_links = paginate_links([
+            'base' => add_query_arg('paged', '%#%'),
             'format' => '',
             'current' => $paged,
             'total' => $total_pages,
-            'prev_text' => '← Trước',
-            'next_text' => 'Tiếp →',
+            'prev_text' => '«',
+            'next_text' => '»',
+            'type' => 'array',
         ]);
+
+        // Hiển thị trang hiện tại / tổng số trang
+        echo '<span>' . $paged . ' of ' . $total_pages . '</span>';
+
+        // Hiển thị các nút trang styled như ảnh
+        if (!empty($page_links)) {
+            foreach ($page_links as $link) {
+                if (strpos($link, 'current') !== false) {
+                    echo '<span style="border: 1px solid #ccc; padding: 4px 8px; background: #f0f0f1;">' . strip_tags($link) . '</span>';
+                } else {
+                    echo str_replace('page-numbers', 'page-numbers button', $link);
+                }
+            }
+        }
+
         echo '</div></div>';
     }
 
