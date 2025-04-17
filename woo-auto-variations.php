@@ -3,7 +3,7 @@
  * Plugin Name: Woo Auto Variations
  * Plugin URI: https://github.com/daunampc/Woo-Auto-Variations
  * Description: Tự động tạo biến thể sản phẩm theo Color và Size, hỗ trợ bulk action, pagination, AJAX, và cập nhật tự động từ GitHub.
- * Version: 2.2.9
+ * Version: 2.3.0
  * Author: DNPC
  * Author URI: https://github.com/daunampc/Woo-Auto-Variations
  * License: GPLv2 or later
@@ -181,11 +181,11 @@ add_action('admin_footer', function () {
 
             const bulkForm = document.querySelector("form[method='post']");
             if (bulkForm) {
-                const generateSelectedBtn = document.createElement("button");
-                generateSelectedBtn.type = "submit";
-                generateSelectedBtn.name = "bulk_generate_selected";
-                generateSelectedBtn.className = "button button-secondary";
-                generateSelectedBtn.textContent = "Tạo biến thể cho sản phẩm đã chọn";
+                // const generateSelectedBtn = document.createElement("button");
+                // generateSelectedBtn.type = "submit";
+                // generateSelectedBtn.name = "bulk_generate_selected";
+                // generateSelectedBtn.className = "button button-secondary";
+               // generateSelectedBtn.textContent = "Tạo biến thể cho sản phẩm đã chọn";
                 bulkForm.insertBefore(generateSelectedBtn, bulkForm.querySelector(".button-primary"));
 
                 bulkForm.addEventListener("submit", async function (e) {
@@ -283,7 +283,7 @@ function woo_variations_admin_page()
     echo '<form method="post" action="' . admin_url('admin-post.php?action=bulk_generate_selected') . '" id="variation-form">';
     echo '<input type="hidden" name="action" value="bulk_generate_selected" />';
     echo '<table class="wp-list-table widefat striped"><thead>
-            <tr><th>ID</th><th>Tên sản phẩm</th><th>Loại</th><th>Biến thể</th><th>Thao tác</th></tr></thead><tbody>';
+            <tr><th>A</th> <th>ID</th><th>Tên sản phẩm</th><th>Loại</th><th>Biến thể</th><th>Thao tác</th><th> View </th></tr></thead><tbody>';
 
     if ($query->have_posts()) {
         while ($query->have_posts()) {
@@ -296,24 +296,33 @@ function woo_variations_admin_page()
             if ($filter_no_variations && $has_children) continue;
 
             echo '<tr>';
+            echo '<td>'; 
+              echo '<input type="checkbox" name="product_ids[]" value="' . get_the_ID() . '" />';
+            echo '</td>';
             echo '<td>' . get_the_ID() . '</td>';
             echo '<td>' . get_the_title() . '</td>';
             echo '<td>' . ucfirst($type) . '</td>';
-            echo '<td>' . ($has_children ? 'Đã có' : 'Chưa có') . '</td>';
+           // echo '<td>' . ($has_children ? 'Đã có' : 'Chưa có') . '</td>';
+      // echo '<td>';
             echo '<td>';
-
-            echo '<input type="checkbox" name="product_ids[]" value="' . get_the_ID() . '" />';
-
-            $product_url = get_edit_post_link(get_the_ID());
-            echo '<a href="' . esc_url($product_url) . '" class="button" target="_blank" style="margin-left: 6px;">Xem</a> ';
-
-            if (!$has_children) {
-                echo ' <a href="' . admin_url('admin.php?page=woo-auto-variations-paginate&generate_for=' . get_the_ID() . '&paged=' . $paged) . '" class="button">Tạo</a>';
+            if ($has_children) {
+                echo '<span style="display:inline-block; padding:2px 6px; border-radius:4px; background:#d4edda; color:#155724;font-weight:500;">Đã có</span>';
             } else {
-                echo '<span style="color: #777;">Đã có biến thể</span>';
+                echo '<span style="display:inline-block; padding:2px 6px; border-radius:4px; background:#f8d7da; color:#721c24;font-weight:500;">Chưa có</span>';
             }
-
-            echo '</td></tr>';
+            echo '</td>';
+            echo '<td>';
+              if (!$has_children) {
+                  echo ' <a href="' . admin_url('admin.php?page=woo-auto-variations-paginate&generate_for=' . get_the_ID() . '&paged=' . $paged) . '" class="button">Tạo</a>';
+              } else {
+                  echo ' <a href="#" class="button" style="background:#f8d7da;color:#721c24">Đã có</a>';
+              }
+            echo '</td>';
+            echo '<td>';
+              $product_url = get_edit_post_link(get_the_ID());
+              echo '<a href="' . esc_url($product_url) . '" class="button" target="_blank" style="margin-left: 6px;">Xem</a> ';
+            echo '</td>';
+         echo '</tr>';
         }
     } else {
         echo '<tr><td colspan="5">Không có sản phẩm nào.</td></tr>';
@@ -327,7 +336,7 @@ function woo_variations_admin_page()
 
     echo '<form method="post" id="remove-variations-form" action="' . admin_url('admin-post.php?action=remove_variations') . '">';
     wp_nonce_field('woo_bulk_remove_variations');
-    echo '<p><button type="submit" class="button" id="woo-remove-variations">🗑️ Xoá biến thể đã chọn</button></p>';
+    echo '<p><button type="submit" style="background: #c70808;color: white;border:none;" class="button" id="woo-remove-variations">🗑️ Xoá biến thể đã chọn</button></p>';
     echo '</form>';
 
     $total_pages = $query->max_num_pages;

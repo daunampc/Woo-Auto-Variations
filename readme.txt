@@ -23,7 +23,13 @@ Woo Auto Variations giúp bạn tạo các biến thể sản phẩm tự độn
 2. Kích hoạt plugin từ menu 'Plugins' trong WordPress.
 3. Vào mục **Auto Variations** để sử dụng.
 
+
 == Changelog ==
+= 2.3.0 =
+* Cập nhật giao diện table 
+* Chỉnh sửa giao diện table dễ sử dụng hơn
+* Xóa 1 số tính năng không cần thiết 
+* Nâng cấp hiệu xuất xử lí hệ thống
 = 2.2.8 =
 * Cập nhật pagnation 
 * Sửa lỗi hiệu xuất xử lí hệ thống
