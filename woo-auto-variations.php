@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin Name: Woo Auto Variations
- * Version: 2.1.0
+ * Version: 2.2.6
  * Author: DNPC
  */
 
