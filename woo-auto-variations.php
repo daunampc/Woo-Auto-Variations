@@ -3,7 +3,7 @@
  * Plugin Name: Woo Auto Variations
  * Plugin URI: https://github.com/daunampc/Woo-Auto-Variations
  * Description: Tự động tạo biến thể sản phẩm theo Color và Size, hỗ trợ bulk action, pagination, AJAX, và cập nhật tự động từ GitHub.
- * Version: 2.2.8
+ * Version: 2.2.9
  * Author: DNPC
  * Author URI: https://github.com/daunampc/Woo-Auto-Variations
  * License: GPLv2 or later
