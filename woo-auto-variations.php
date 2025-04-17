@@ -1,14 +1,14 @@
 <?php
 /**
  * Plugin Name: Woo Auto Variations
- * Plugin URI: https://github.com/your-github-user/woo-auto-variations
+ * Plugin URI: https://github.com/daunampc/Woo-Auto-Variations
  * Description: Tự động tạo biến thể sản phẩm theo Color và Size, hỗ trợ bulk action, pagination, AJAX, và cập nhật tự động từ GitHub.
  * Version: 2.2.7
  * Author: DNPC
- * Author URI: https://github.com/your-github-user
+ * Author URI: https://github.com/daunampc/Woo-Auto-Variations
  * License: GPLv2 or later
  * License URI: https://www.gnu.org/licenses/gpl-2.0.html
- * Update URI: https://github.com/your-github-user/woo-auto-variations
+ * Update URI: https://github.com/daunampc/Woo-Auto-Variations
  */
 
 if (!defined('ABSPATH')) exit;
