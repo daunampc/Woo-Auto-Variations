@@ -303,6 +303,10 @@ function woo_variations_admin_page()
             echo '<td>';
 
             echo '<input type="checkbox" name="product_ids[]" value="' . get_the_ID() . '" />';
+
+            $product_url = get_edit_post_link(get_the_ID());
+            echo '<a href="' . esc_url($product_url) . '" class="button" target="_blank" style="margin-left: 6px;">Xem</a> ';
+
             if (!$has_children) {
                 echo ' <a href="' . admin_url('admin.php?page=woo-auto-variations-paginate&generate_for=' . get_the_ID() . '&paged=' . $paged) . '" class="button">Tạo</a>';
             } else {
